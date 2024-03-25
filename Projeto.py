@@ -1,4 +1,3 @@
-#Lembrar que no site do G1 tem como pegar o link das noticias
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
