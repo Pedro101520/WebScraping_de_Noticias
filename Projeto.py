@@ -1,3 +1,4 @@
+#Lembrar que no site do G1 tem como pegar o link das noticias
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
@@ -20,10 +21,19 @@ def descricao():
         textoDescricao.append(conteudo)
     return textoDescricao
 
+def links():
+    armazenaLink = []
+    links = parsed_html.find_all('div', attrs={'class': 'feed-post-body-title'})
+    for link in links[:5]:
+        url = link.find('a')
+        armazenaLink.append(url.get('href'))
+    return armazenaLink
+
 def formataConteudo():
     for i in range(0, 5):
         print(titulo()[i])
         print(descricao()[i])
-        print('------------------------------------------------------------')
+        print(links()[i])
+        print('\n')
 
 formataConteudo()
