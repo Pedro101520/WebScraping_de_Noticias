@@ -1,6 +1,5 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph
@@ -52,6 +51,14 @@ def geraPdf():
         textColor=colors.black
     )
 
+    # Estilo para o link
+    estilo_link = ParagraphStyle(
+    "link",
+    parent=getSampleStyleSheet()["Normal"],
+    fontSize=10,
+    textColor=colors.blue
+    )
+
     # Array para armazenar os elementos do PDF
     conteudo = []
 
@@ -67,7 +74,7 @@ def geraPdf():
 
         # Adiciona a descrição e o link ao conteúdo
         conteudo.append(Paragraph(descricao_texto, estilo_texto))
-        conteudo.append(Paragraph('<a href="{}">{}</a>'.format(link_texto, link_texto), estilo_texto))
+        conteudo.append(Paragraph('<a href="{}">{}</a>'.format(link_texto, link_texto), estilo_link))
         
         # Adiciona um espaço entre os itens
         conteudo.append(Paragraph("<br/><br/>", estilo_texto))
