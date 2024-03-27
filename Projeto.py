@@ -71,7 +71,6 @@ def geraPdf():
         
         # Adiciona um espaço entre os itens
         conteudo.append(Paragraph("<br/><br/>", estilo_texto))
-        
     pdf.build(conteudo)
 
 geraPdf()
