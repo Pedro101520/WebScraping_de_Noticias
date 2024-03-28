@@ -32,6 +32,16 @@ def links():
         armazenaLink.append(url.get('href'))
     return armazenaLink
 
+def localHora():
+    armazenaInfo = []
+    infos = parsed_html.find_all('div', attrs={'class': 'feed-post-metadata'})
+    for info in infos[:5]:
+        span =  info.find_all('span')
+        infoHora = span[0].get_text()
+        infoLocal = span[1].get_text()
+        armazenaInfo.append(infoHora + ' - ' + infoLocal)
+    return armazenaInfo
+
 def geraPdf():
     pdf = SimpleDocTemplate("Ultimas_Noticias.pdf", pagesize=letter)
 
@@ -59,6 +69,14 @@ def geraPdf():
     textColor=colors.blue
     )
 
+    # Estilo para Data e Local
+    estilo_DataLocal = ParagraphStyle(
+    "DataLocal",
+    parent=getSampleStyleSheet()["Normal"],
+    fontSize=8,
+    textColor=colors.gray
+    )
+
     # Array para armazenar os elementos do PDF
     conteudo = []
 
@@ -66,18 +84,27 @@ def geraPdf():
     for i in range(5):
         titulo_texto = titulo()[i]
         descricao_texto = descricao()[i]
+        datalocal_texto = localHora()[i]
         link_texto = links()[i]
         
         # Adiciona o título ao conteúdo com quebra de linha
         titulo_formatado = "<b>{}</b>".format(titulo_texto)
         conteudo.append(Paragraph(titulo_formatado, estilo_titulo))
 
-        # Adiciona a descrição e o link ao conteúdo
+        # Adiciona a descrição
         conteudo.append(Paragraph(descricao_texto, estilo_texto))
+
+        # Adiciona os Links
         conteudo.append(Paragraph('<a href="{}">{}</a>'.format(link_texto, link_texto), estilo_link))
+        
+        # Adiciona informações de Data e local
+        conteudo.append(Paragraph(datalocal_texto, estilo_DataLocal))
         
         # Adiciona um espaço entre os itens
         conteudo.append(Paragraph("<br/><br/>", estilo_texto))
     pdf.build(conteudo)
 
 geraPdf()
+
+# for i in range(0, 5):
+#     print(localHora()[i])
