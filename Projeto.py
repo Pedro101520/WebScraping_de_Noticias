@@ -25,11 +25,11 @@ def descricao():
     textoDescricao = []
     descricoes = parsed_html.find_all('div', attrs={'class': 'feed-post-body-resumo'})
     for descricao in descricoes:
-        if descricao is not None:
-            conteudo = descricao.find('p').get_text()
+        conteudo = descricao.find('p')
+        if conteudo is not None:
+            textoDescricao.append(conteudo.get_text())
         else:
-            conteudo = ' '
-        textoDescricao.append(conteudo)
+            textoDescricao.append('')
     return textoDescricao
 
 def links():
@@ -142,11 +142,11 @@ def interface():
         background = "#dde",
         foreground = "#009",
         anchor = W
-    ).place(x=10, y=10, width=150, height=20)
+    ).place(x=10, y=10, width=200, height=20)
 
     # txtQtde = Spinbox(app, from_=1, to=10)
     txtQtde=Entry(app)
-    txtQtde.place(x=160, y=10, width=50, height=20)
+    txtQtde.place(x=225, y=10, width=50, height=20)
 
     Button(app, text="Imprimir", command=lambda: botaoNoticia(txtQtde.get(), app)).place(x=10, y=270, width=100, height=20)
     app.mainloop()
