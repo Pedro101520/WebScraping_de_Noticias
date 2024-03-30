@@ -11,23 +11,29 @@ parsed_html = BeautifulSoup(url, "html.parser")
 def titulo():
     textoTitulo = []
     titulos = parsed_html.find_all('div', attrs={'class': 'feed-post-body-title'})
-    for titulo in titulos[:5]:
-        conteudo = titulo.find('p').get_text()
+    for titulo in titulos:
+        if titulo is not None:
+            conteudo = titulo.find('p').get_text()
+        else:
+            conteudo = ' '
         textoTitulo.append(conteudo)
     return textoTitulo
 
 def descricao():
     textoDescricao = []
     descricoes = parsed_html.find_all('div', attrs={'class': 'feed-post-body-resumo'})
-    for descricao in descricoes[:5]:
-        conteudo = descricao.find('p').get_text()
+    for descricao in descricoes:
+        if descricao is not None:
+            conteudo = descricao.find('p').get_text()
+        else:
+            conteudo = ' '
         textoDescricao.append(conteudo)
     return textoDescricao
 
 def links():
     armazenaLink = []
     links = parsed_html.find_all('div', attrs={'class': 'feed-post-body-title'})
-    for link in links[:5]:
+    for link in links:
         url = link.find('a')
         armazenaLink.append(url.get('href'))
     return armazenaLink
@@ -35,10 +41,14 @@ def links():
 def localHora():
     armazenaInfo = []
     infos = parsed_html.find_all('div', attrs={'class': 'feed-post-metadata'})
-    for info in infos[:5]:
+    for info in infos:
         span =  info.find_all('span')
-        infoHora = span[0].get_text()
-        infoLocal = span[1].get_text()
+        if span is not None:
+            infoHora = span[0].get_text()
+            infoLocal = span[1].get_text()
+        else:
+            infoHora = ' '
+            infoLocal = ' '
         armazenaInfo.append(infoHora + ' - ' + infoLocal)
     return armazenaInfo
 
@@ -81,12 +91,12 @@ def geraPdf():
     conteudo = []
 
     # Adiciona os títulos, descrições e links ao conteúdo do PDF
-    for i in range(5):
+    for i in range(10):
         titulo_texto = titulo()[i]
         descricao_texto = descricao()[i]
         datalocal_texto = localHora()[i]
         link_texto = links()[i]
-        
+
         # Adiciona o título ao conteúdo com quebra de linha
         titulo_formatado = "<b>{}</b>".format(titulo_texto)
         conteudo.append(Paragraph(titulo_formatado, estilo_titulo))
@@ -105,6 +115,3 @@ def geraPdf():
     pdf.build(conteudo)
 
 geraPdf()
-
-# for i in range(0, 5):
-#     print(localHora()[i])
