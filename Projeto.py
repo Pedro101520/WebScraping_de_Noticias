@@ -4,6 +4,8 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from tkinter import *
+from tkinter import messagebox
 
 url = urlopen("https://g1.globo.com/ultimas-noticias/")
 parsed_html = BeautifulSoup(url, "html.parser")
@@ -52,7 +54,7 @@ def localHora():
         armazenaInfo.append(infoHora + ' - ' + infoLocal)
     return armazenaInfo
 
-def geraPdf():
+def geraPdf(qtde_noticias):
     pdf = SimpleDocTemplate("Ultimas_Noticias.pdf", pagesize=letter)
 
     # Estilo para o titulo
@@ -91,7 +93,7 @@ def geraPdf():
     conteudo = []
 
     # Adiciona os títulos, descrições e links ao conteúdo do PDF
-    for i in range(10):
+    for i in range(qtde_noticias):
         titulo_texto = titulo()[i]
         descricao_texto = descricao()[i]
         datalocal_texto = localHora()[i]
@@ -114,4 +116,39 @@ def geraPdf():
         conteudo.append(Paragraph("<br/><br/>", estilo_texto))
     pdf.build(conteudo)
 
-geraPdf()
+def botaoNoticia(qtdeNoticia, app):
+
+    if not(qtdeNoticia.isdigit()):
+        messagebox.showerror("Erro", "Digite apenas numeros")
+    else:
+        qtdeNoticia = int(qtdeNoticia)
+        if qtdeNoticia < 1 or qtdeNoticia > 10:
+            messagebox.showerror("Erro", "Apenas numeros entre 1 a 10")
+        else:
+            print(qtdeNoticia)
+            geraPdf(qtdeNoticia)
+            messagebox.showinfo("Aviso", "PDF Gerado!")
+            app.destroy()
+
+def interface():
+    app = Tk()
+    app.title("Ultimas Noticias")
+    app.geometry("500x300")
+    app.configure(background='#dde')
+
+    Label(
+        app,
+        text = "Quantidade de noticias - Entre 1 a 10:",
+        background = "#dde",
+        foreground = "#009",
+        anchor = W
+    ).place(x=10, y=10, width=150, height=20)
+
+    # txtQtde = Spinbox(app, from_=1, to=10)
+    txtQtde=Entry(app)
+    txtQtde.place(x=160, y=10, width=50, height=20)
+
+    Button(app, text="Imprimir", command=lambda: botaoNoticia(txtQtde.get(), app)).place(x=10, y=270, width=100, height=20)
+    app.mainloop()
+
+interface()
