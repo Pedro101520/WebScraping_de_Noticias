@@ -119,13 +119,12 @@ def geraPdf(qtde_noticias):
 def botaoNoticia(qtdeNoticia, app):
 
     if not(qtdeNoticia.isdigit()):
-        messagebox.showerror("Erro", "Digite apenas numeros")
+        messagebox.showerror("Atenção", "Digite apenas numeros")
     else:
         qtdeNoticia = int(qtdeNoticia)
         if qtdeNoticia < 1 or qtdeNoticia > 10:
-            messagebox.showerror("Erro", "Apenas numeros entre 1 a 10")
+            messagebox.showerror("Atenção", "Apenas numeros entre 1 a 10")
         else:
-            print(qtdeNoticia)
             geraPdf(qtdeNoticia)
             messagebox.showinfo("Aviso", "PDF Gerado!")
             app.destroy()
@@ -148,7 +147,7 @@ def interface():
     txtQtde=Entry(app)
     txtQtde.place(x=225, y=10, width=50, height=20)
 
-    Button(app, text="Imprimir", command=lambda: botaoNoticia(txtQtde.get(), app)).place(x=10, y=270, width=100, height=20)
+    Button(app, text="Gerar PDF", command=lambda: botaoNoticia(txtQtde.get(), app)).place(x=10, y=270, width=100, height=20)
     app.mainloop()
 
 interface()
