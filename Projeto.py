@@ -117,17 +117,19 @@ def geraPdf(qtde_noticias):
     pdf.build(conteudo)
 
 def botaoNoticia(qtdeNoticia, app):
-
-    if not(qtdeNoticia.isdigit()):
-        messagebox.showerror("Atenção", "Digite apenas numeros")
-    else:
-        qtdeNoticia = int(qtdeNoticia)
-        if qtdeNoticia < 1 or qtdeNoticia > 10:
-            messagebox.showerror("Atenção", "Apenas numeros entre 1 a 10")
+    try:
+        if not(qtdeNoticia.isdigit()):
+            messagebox.showerror("Atenção", "Digite apenas numeros")
         else:
-            geraPdf(qtdeNoticia)
-            messagebox.showinfo("Aviso", "PDF Gerado!")
-            app.destroy()
+            qtdeNoticia = int(qtdeNoticia)
+            if qtdeNoticia < 1 or qtdeNoticia > 10:
+                messagebox.showerror("Atenção", "Apenas numeros entre 1 a 10")
+            else:
+                geraPdf(qtdeNoticia)
+                messagebox.showinfo("Aviso", "PDF Gerado!")
+                app.destroy()
+    except PermissionError:
+        messagebox.showerror("Aviso", "Feche o arquivo PDF e tente novamente!")
 
 def interface():
     app = Tk()
