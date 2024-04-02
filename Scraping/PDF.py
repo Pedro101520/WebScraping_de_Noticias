@@ -68,5 +68,4 @@ def geraPdf(qtde_noticias):
         # Adiciona um espaço entre os itens
         conteudo.append(Paragraph("<br/><br/>", estilo_texto))
 
-    print(len(descricao_texto))
     pdf.build(conteudo)

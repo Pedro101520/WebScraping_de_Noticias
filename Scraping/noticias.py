@@ -18,7 +18,6 @@ def descricao():
     for descricao in descricoes:
         conteudo = descricao.find('p')
         textoDescricao.append(conteudo.get_text())
-    print(len(textoDescricao))
     return textoDescricao
 
 def links():
