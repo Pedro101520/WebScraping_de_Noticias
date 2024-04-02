@@ -25,11 +25,11 @@ def descricao():
     textoDescricao = []
     descricoes = parsed_html.find_all('div', attrs={'class': 'feed-post-body-resumo'})
     for descricao in descricoes:
-        conteudo = descricao.find('p')
-        if conteudo is not None:
-            textoDescricao.append(conteudo.get_text())
-        else:
+        if not descricao:
             textoDescricao.append('')
+        else:
+            conteudo = descricao.find('p')
+            textoDescricao.append(conteudo.get_text())
     return textoDescricao
 
 def links():
