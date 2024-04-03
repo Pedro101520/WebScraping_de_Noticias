@@ -47,16 +47,15 @@ def geraPdf(qtde_noticias):
     datalocal_texto = localHora()
     link_texto = links()
 
+    descricao_texto[4] = None
+
     for i in range(qtde_noticias):
         # Adiciona o título ao conteúdo com quebra de linha
         titulo_formatado = "<b>{}</b>".format(titulo_texto[i])
         conteudo.append(Paragraph(titulo_formatado, estilo_titulo))
 
-        if i < len(descricao_texto):
-            conteudo.append(Paragraph(descricao_texto[i], estilo_texto))
-        else:
-            descricao_texto.insert(i, "Descrição Indisponível")
-            conteudo.append(Paragraph("Descrição Indisponível", estilo_texto))
+        if descricao_texto[i] is not None or descricao_texto != "":
+            conteudo.append(Paragraph(str(descricao_texto[i]), estilo_texto))
 
         # Verifica se há link disponível para a notícia atual
         conteudo.append(Paragraph('<a href="{}">{}</a>'.format(link_texto[i], link_texto[i]), estilo_link))
@@ -66,5 +65,4 @@ def geraPdf(qtde_noticias):
 
         # Adiciona um espaço entre os itens
         conteudo.append(Paragraph("<br/><br/>", estilo_texto))
-
     pdf.build(conteudo)
