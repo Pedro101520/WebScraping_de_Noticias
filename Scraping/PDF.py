@@ -52,12 +52,11 @@ def geraPdf(qtde_noticias):
         titulo_formatado = "<b>{}</b>".format(titulo_texto[i])
         conteudo.append(Paragraph(titulo_formatado, estilo_titulo))
 
-        if descricao_texto[i] and i < len(descricao_texto) and descricao_texto[i] is not None:
-            descricao_noticia = descricao_texto[i]
+        if i < len(descricao_texto):
+            conteudo.append(Paragraph(descricao_texto[i], estilo_texto))
         else:
-            descricao_texto[i] = "Descrição não Disponível"
-            descricao_noticia = descricao_texto[i]
-        conteudo.append(Paragraph(descricao_noticia, estilo_texto))
+            descricao_texto.insert(i, "Descrição Indisponível")
+            conteudo.append(Paragraph("Descrição Indisponível", estilo_texto))
 
         # Verifica se há link disponível para a notícia atual
         conteudo.append(Paragraph('<a href="{}">{}</a>'.format(link_texto[i], link_texto[i]), estilo_link))
