@@ -47,8 +47,6 @@ def geraPdf(qtde_noticias):
     datalocal_texto = localHora()
     link_texto = links()
 
-    descricao_texto[4] = None
-
     for i in range(qtde_noticias):
         # Adiciona o título ao conteúdo com quebra de linha
         titulo_formatado = "<b>{}</b>".format(titulo_texto[i])
