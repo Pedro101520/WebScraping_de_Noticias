@@ -12,13 +12,21 @@ def titulo():
         textoTitulo.append(conteudo)
     return textoTitulo
 
-def descricao():
+def descricao(qtde_noticias):
+    i = 0
     textoDescricao = []
     descricoes = parsed_html.find_all('div', attrs={'class': 'feed-post-body-resumo'})
-    for descricao in descricoes:
-        conteudo = descricao.find('p')
-        textoDescricao.append(conteudo.get_text())
+    for j in range(qtde_noticias):
+        for descricao in descricoes:
+            conteudo = descricao.find('p')
+            if conteudo:
+                textoDescricao.append(conteudo.get_text())
+            else:
+                textoDescricao.insert(i, "")
+            i += 1
+        print("Pedro")
     return textoDescricao
+
 
 def links():
     armazenaLink = []

@@ -1,4 +1,5 @@
-from .noticias import *
+from .newsG1 import *
+from .newsG1 import *
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
@@ -26,24 +27,24 @@ def geraPdf(qtde_noticias):
 
     # Estilo para o link
     estilo_link = ParagraphStyle(
-    "link",
-    parent=getSampleStyleSheet()["Normal"],
-    fontSize=10,
-    textColor=colors.blue
+        "link",
+        parent=getSampleStyleSheet()["Normal"],
+        fontSize=10,
+        textColor=colors.blue
     )
 
     # Estilo para Data e Local
     estilo_DataLocal = ParagraphStyle(
-    "DataLocal",
-    parent=getSampleStyleSheet()["Normal"],
-    fontSize=8,
-    textColor=colors.gray
+        "DataLocal",
+        parent=getSampleStyleSheet()["Normal"],
+        fontSize=8,
+        textColor=colors.gray
     )
 
     # Array para armazenar os elementos do PDF
     conteudo = []
     titulo_texto = titulo()
-    descricao_texto = descricao()
+    descricao_texto = descricao(qtde_noticias)
     datalocal_texto = localHora()
     link_texto = links()
 
@@ -52,8 +53,8 @@ def geraPdf(qtde_noticias):
         titulo_formatado = "<b>{}</b>".format(titulo_texto[i])
         conteudo.append(Paragraph(titulo_formatado, estilo_titulo))
 
-        if descricao_texto[i] is not None or descricao_texto != "":
-            conteudo.append(Paragraph(str(descricao_texto[i]), estilo_texto))
+        # if descricao_texto[i] is not None or descricao_texto != "":
+        conteudo.append(Paragraph(str(descricao_texto[i]), estilo_texto))
 
         # Verifica se há link disponível para a notícia atual
         conteudo.append(Paragraph('<a href="{}">{}</a>'.format(link_texto[i], link_texto[i]), estilo_link))
