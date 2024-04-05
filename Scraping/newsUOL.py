@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 url = urlopen("https://noticias.uol.com.br/ultimas/")
 parsed_html = BeautifulSoup(url, "html.parser")
 
-def titulo():
+def tituloUol():
     textoTitulo = []
     titulos = parsed_html.find_all('div', attrs={'class': 'thumb-caption'})
     for titulo in titulos:
@@ -13,7 +13,7 @@ def titulo():
     return textoTitulo
 
 # localHora
-def Hora():
+def HoraUol():
     armazenaInfo = []
     infos = parsed_html.find_all('div', attrs={'class': 'thumb-caption'})
     for info in infos:
@@ -21,12 +21,10 @@ def Hora():
         armazenaInfo.append(conteudo)
     return armazenaInfo
 
-def links():
+def linksUol():
     armazenaLink = []
     links = parsed_html.find_all('div', attrs={'class': 'thumbnails-wrapper'})
     for link in links:
         url = link.find('a')
         armazenaLink.append(url.get('href'))
     return armazenaLink
-
-print(Hora())

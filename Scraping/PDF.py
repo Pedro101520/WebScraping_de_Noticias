@@ -1,12 +1,12 @@
 from .newsG1 import *
-from .newsG1 import *
+from .newsUOL import *
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-def geraPdf(qtde_noticias):
+def geraPdf(qtde_noticias, siteNoticia):
     pdf = SimpleDocTemplate("Ultimas_Noticias.pdf", pagesize=letter)
 
     # Estilo para o titulo
@@ -43,10 +43,15 @@ def geraPdf(qtde_noticias):
 
     # Array para armazenar os elementos do PDF
     conteudo = []
-    titulo_texto = titulo()
-    descricao_texto = descricao(qtde_noticias)
-    datalocal_texto = localHora()
-    link_texto = links()
+    if(siteNoticia == 'o'):
+        titulo_texto = tituloUol()
+        datalocal_texto = HoraUol()
+        link_texto = linksUol()
+    elif(siteNoticia == 'g'):
+        titulo_texto = tituloG1()
+        datalocal_texto = localHoraG1()
+        link_texto = linksG1()
+        descricao_texto = descricaoG1(qtde_noticias)
 
     for i in range(qtde_noticias):
         # Adiciona o título ao conteúdo com quebra de linha
@@ -54,7 +59,8 @@ def geraPdf(qtde_noticias):
         conteudo.append(Paragraph(titulo_formatado, estilo_titulo))
 
         # if descricao_texto[i] is not None or descricao_texto != "":
-        conteudo.append(Paragraph(str(descricao_texto[i]), estilo_texto))
+        if(siteNoticia == 'g'):
+            conteudo.append(Paragraph(str(descricao_texto[i]), estilo_texto))
 
         # Verifica se há link disponível para a notícia atual
         conteudo.append(Paragraph('<a href="{}">{}</a>'.format(link_texto[i], link_texto[i]), estilo_link))

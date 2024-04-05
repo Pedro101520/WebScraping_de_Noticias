@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 url = urlopen("https://g1.globo.com/ultimas-noticias/")
 parsed_html = BeautifulSoup(url, "html.parser")
 
-def titulo():
+def tituloG1():
     textoTitulo = []
     titulos = parsed_html.find_all('div', attrs={'class': 'feed-post-body-title'})
     for titulo in titulos:
@@ -12,23 +12,22 @@ def titulo():
         textoTitulo.append(conteudo)
     return textoTitulo
 
-def descricao(qtde_noticias):
-    i = 0
+def descricaoG1(qtde_noticias):
     textoDescricao = []
     descricoes = parsed_html.find_all('div', attrs={'class': 'feed-post-body-resumo'})
-    for j in range(qtde_noticias):
-        for descricao in descricoes:
-            conteudo = descricao.find('p')
-            if conteudo:
-                textoDescricao.append(conteudo.get_text())
-            else:
-                textoDescricao.insert(i, "")
-            i += 1
-        print("Pedro")
+    for i in range(qtde_noticias):
+        if i < len(descricoes):
+            descricao = descricoes[i]
+            conteudo = descricao.find('p').get_text()
+            textoDescricao.append(conteudo)
+            if descricao == 'None':
+                print("oi")    
+        else:
+            textoDescricao.append("Descrição não disponível")
     return textoDescricao
 
 
-def links():
+def linksG1():
     armazenaLink = []
     links = parsed_html.find_all('div', attrs={'class': 'feed-post-body-title'})
     for link in links:
@@ -36,7 +35,7 @@ def links():
         armazenaLink.append(url.get('href'))
     return armazenaLink
 
-def localHora():
+def localHoraG1():
     armazenaInfo = []
     infos = parsed_html.find_all('div', attrs={'class': 'feed-post-metadata'})
     for info in infos:
