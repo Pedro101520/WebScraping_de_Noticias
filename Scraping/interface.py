@@ -45,6 +45,8 @@ def window():
     rb_g1.place(x=15, y=100)
     rb_UOL = Radiobutton(app, text="Noticias UOL", value="o", variable=siteNoticia, background="#dde")
     rb_UOL.place(x=15, y=130)
+    rb_Folha = Radiobutton(app, text="Noticias Folha de São Paulo", value="f", variable=siteNoticia, background="#dde")
+    rb_Folha.place(x=15, y=160)
 
     Button(app, text="Gerar PDF", command=lambda: botaoNoticia(txtQtde.get(), app, siteNoticia.get())).place(x=10, y=270, width=100, height=20)
     app.mainloop()
