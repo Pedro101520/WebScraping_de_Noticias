@@ -10,7 +10,6 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 def geraPdf(qtde_noticias, siteNoticia):
     pdf = SimpleDocTemplate("Ultimas_Noticias.pdf", pagesize=letter)
 
-    # Estilo para o titulo
     estilo_titulo = ParagraphStyle(
         "titulo",
         parent=getSampleStyleSheet()["Title"],
@@ -18,7 +17,6 @@ def geraPdf(qtde_noticias, siteNoticia):
         textColor=colors.black
     )
 
-    # Estilo para o texto
     estilo_texto = ParagraphStyle(
         "texto",
         parent=getSampleStyleSheet()["Normal"],
@@ -26,7 +24,6 @@ def geraPdf(qtde_noticias, siteNoticia):
         textColor=colors.black
     )
 
-    # Estilo para o link
     estilo_link = ParagraphStyle(
         "link",
         parent=getSampleStyleSheet()["Normal"],
@@ -34,7 +31,6 @@ def geraPdf(qtde_noticias, siteNoticia):
         textColor=colors.blue
     )
 
-    # Estilo para Data e Local
     estilo_DataLocal = ParagraphStyle(
         "DataLocal",
         parent=getSampleStyleSheet()["Normal"],
@@ -42,7 +38,6 @@ def geraPdf(qtde_noticias, siteNoticia):
         textColor=colors.gray
     )
 
-    # Array para armazenar os elementos do PDF
     conteudo = []
     if(siteNoticia == 'o'):
         titulo_texto = tituloUol()

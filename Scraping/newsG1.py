@@ -14,13 +14,14 @@ def tituloG1():
 
 def descricaoG1(qtde_noticias):
     textoDescricao = []
-    i = 0
     descricoes = parsed_html.find_all('div', attrs={'class': 'feed-post-body-resumo'})
-    for descricao in descricoes[:qtde_noticias]:
-        conteudo = descricao.find('p').get_text()
-        if conteudo is not None:
-            textoDescricao.append(conteudo)
-        i += 1
+    for i in range(qtde_noticias):
+        try:
+            conteudo = descricoes[i]
+            conteudo = conteudo.find('p').get_text()
+        except IndexError:
+            descricoes[i] = "Descrição Indisponível"
+        textoDescricao.append(conteudo)
     return textoDescricao
 
 

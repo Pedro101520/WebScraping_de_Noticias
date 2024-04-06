@@ -12,7 +12,6 @@ def tituloUol():
         textoTitulo.append(conteudo)
     return textoTitulo
 
-# localHora
 def HoraUol():
     armazenaInfo = []
     infos = parsed_html.find_all('div', attrs={'class': 'thumb-caption'})
