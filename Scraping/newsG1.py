@@ -19,7 +19,7 @@ def descricaoG1(qtde_noticias):
         try:
             conteudo = descricoes[i]
             conteudo = conteudo.find('p').get_text()
-        except IndexError:
+        except (IndexError, AttributeError):
             descricoes[i] = "Descrição Indisponível"
         textoDescricao.append(conteudo)
     return textoDescricao
