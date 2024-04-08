@@ -12,17 +12,31 @@ def tituloG1():
         textoTitulo.append(conteudo)
     return textoTitulo
 
-def descricaoG1(qtde_noticias):
+def descricaoG1():
     textoDescricao = []
-    descricoes = parsed_html.find_all('div', attrs={'class': 'feed-post-body-resumo'})
-    for i in range(qtde_noticias):
-        try:
-            conteudo = descricoes[i]
-            conteudo = conteudo.find('p').get_text()
-        except (IndexError, AttributeError):
-            descricoes[i] = "Descrição Indisponível"
-        textoDescricao.append(conteudo)
+    body = parsed_html.find_all('div', attrs={'class': 'feed-post-body'})
+    j = 0
+    for i in body:
+        descricoes = i.find('div', attrs={'class': 'feed-post-body-resumo'})
+        if not descricoes:
+            print("Não há descrição para esta notícia no momento.", j)
+            textoDescricao.append("")
+        else:
+            print("Descrição disponivel", j)
+            texto = descricoes.find('p')
+            textoDescricao.append(texto.get_text())
+        j += 1
     return textoDescricao
+
+
+
+
+
+
+
+
+
+
 
 
 def linksG1():

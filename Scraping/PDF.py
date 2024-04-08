@@ -60,8 +60,11 @@ def geraPdf(qtde_noticias, siteNoticia):
         conteudo.append(Paragraph(titulo_formatado, estilo_titulo))
 
         # if descricao_texto[i] is not None or descricao_texto != "":
-        if(siteNoticia == 'g' or siteNoticia == 'f'):
-            conteudo.append(Paragraph(str(descricao_texto[i]), estilo_texto))
+        if siteNoticia == 'g' or siteNoticia == 'f':
+            if descricao_texto[i] != "":
+                conteudo.append(Paragraph(descricao_texto[i], estilo_texto))
+            else:
+                conteudo.append(Paragraph("Descrição indisponível", estilo_texto))
 
         # Verifica se há link disponível para a notícia atual
         conteudo.append(Paragraph('<a href="{}">{}</a>'.format(link_texto[i], link_texto[i]), estilo_link))
