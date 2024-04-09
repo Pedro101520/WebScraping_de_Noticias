@@ -1,6 +1,7 @@
 from .newsG1 import *
 from .newsUOL import *
 from .newsFolha import *
+from .newsCNN import *
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
@@ -47,12 +48,17 @@ def geraPdf(qtde_noticias, siteNoticia):
         titulo_texto = tituloG1()
         datalocal_texto = localHoraG1()
         link_texto = linksG1()
-        descricao_texto = descricaoG1(qtde_noticias)
+        descricao_texto = descricaoG1()
     elif(siteNoticia == 'f'):
         titulo_texto = tituloFolha()
         datalocal_texto = HoraFolha()
         link_texto = linksFolha()
         descricao_texto = descricaoFolha()
+    elif(siteNoticia == 'c'):
+        titulo_texto = tituloCNN()
+        datalocal_texto = HoraCNN()
+        link_texto = linksCNN()
+        descricao_texto = descricaoCNN()
 
     for i in range(qtde_noticias):
         # Adiciona o título ao conteúdo com quebra de linha
@@ -60,7 +66,7 @@ def geraPdf(qtde_noticias, siteNoticia):
         conteudo.append(Paragraph(titulo_formatado, estilo_titulo))
 
         # if descricao_texto[i] is not None or descricao_texto != "":
-        if siteNoticia == 'g' or siteNoticia == 'f':
+        if siteNoticia == 'g' or siteNoticia == 'f' or siteNoticia == 'c':
             if descricao_texto[i] != "":
                 conteudo.append(Paragraph(descricao_texto[i], estilo_texto))
             else:

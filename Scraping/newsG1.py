@@ -15,29 +15,14 @@ def tituloG1():
 def descricaoG1():
     textoDescricao = []
     body = parsed_html.find_all('div', attrs={'class': 'feed-post-body'})
-    j = 0
     for i in body:
         descricoes = i.find('div', attrs={'class': 'feed-post-body-resumo'})
         if not descricoes:
-            print("Não há descrição para esta notícia no momento.", j)
             textoDescricao.append("")
         else:
-            print("Descrição disponivel", j)
             texto = descricoes.find('p')
             textoDescricao.append(texto.get_text())
-        j += 1
     return textoDescricao
-
-
-
-
-
-
-
-
-
-
-
 
 def linksG1():
     armazenaLink = []
