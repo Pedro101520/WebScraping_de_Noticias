@@ -20,9 +20,9 @@ def HoraCNN():
         armazenaInfo.append(conteudo)
     return armazenaInfo
 
-def descricaoCNN():
+def descricaoCNN(qtde_noticias):
     descricao = []
-    links = linksCNN()[:10]
+    links = linksCNN()[:qtde_noticias]
     for link in links:
         url = urlopen(link)
         textoDescricao = BeautifulSoup(url, "html.parser")
