@@ -36,22 +36,22 @@ def window():
     txtQtde.place(x=225, y=10, width=50, height=20)
 
     # Parte resposanvel pelos Radios Buttons
-    siteNoticia = StringVar()
+    siteNoticia = []
 
-    lbl_aviso = Label(app, text="Selecione uma opção", background="#dde")
+    lbl_aviso = Label(app, text="Selecione uma ou mais opções", background="#dde")
     lbl_aviso.place(x=15, y=70)
 
-    rb_g1 = Radiobutton(app, text="Noticias G1", value="g", variable=siteNoticia, background="#dde")
-    rb_g1.place(x=15, y=100)
-    rb_UOL = Radiobutton(app, text="Noticias UOL", value="o", variable=siteNoticia, background="#dde")
-    rb_UOL.place(x=15, y=130)
-    rb_Folha = Radiobutton(app, text="Noticias Folha de São Paulo", value="f", variable=siteNoticia, background="#dde")
-    rb_Folha.place(x=15, y=160)
-    rb_CNN = Radiobutton(app, text="Noticias CNN", value="c", variable=siteNoticia, background="#dde")
-    rb_CNN.place(x=15, y=190)
-    rb_jovem = Radiobutton(app, text="Noticias Jovem Pan", value="j", variable=siteNoticia, background="#dde")
-    rb_jovem.place(x=15, y=220)
+    cb_g1 = Checkbutton(app, text="Noticias G1", onvalue=siteNoticia.insert(0, 'g'), offvalue="", variable=siteNoticia, background="#dde")
+    cb_g1.place(x=15, y=100)
+    cb_UOL = Checkbutton(app, text="Noticias UOL", onvalue=siteNoticia.insert(1, 'o'), offvalue="", variable=siteNoticia, background="#dde")
+    cb_UOL.place(x=15, y=130)
+    cb_Folha = Checkbutton(app, text="Noticias Folha de São Paulo", onvalue=siteNoticia.insert(2, 'f'), offvalue="", variable=siteNoticia, background="#dde")
+    cb_Folha.place(x=15, y=160)
+    cb_CNN = Checkbutton(app, text="Noticias CNN", onvalue=siteNoticia.insert(3, 'c'), offvalue="", variable=siteNoticia, background="#dde")
+    cb_CNN.place(x=15, y=190)
+    cb_jovem = Checkbutton(app, text="Noticias Jovem Pan", onvalue=siteNoticia.insert(4, 'j'), offvalue="", variable=siteNoticia, background="#dde")
+    cb_jovem.place(x=15, y=220)
 
-    Button(app, text="Gerar PDF", command=lambda: botaoNoticia(txtQtde.get(), app, siteNoticia.get())).place(x=10, y=270, width=100, height=20)
+    Button(app, text="Gerar PDF", command=lambda: botaoNoticia(txtQtde.get(), app, siteNoticia)).place(x=10, y=270, width=100, height=20)
     app.mainloop()
 

@@ -41,30 +41,30 @@ def geraPdf(qtde_noticias, siteNoticia):
     )
 
     conteudo = []
-    if(siteNoticia == 'o'):
+    if(siteNoticia[1] == 'o'):
         titulo_texto = tituloUol()
         datalocal_texto = HoraUol()
         link_texto = linksUol()
         pdf = SimpleDocTemplate("Noticias_UOL.pdf", pagesize=letter)
-    elif(siteNoticia == 'g'):
+    if(siteNoticia[0] == 'g'):
         titulo_texto = tituloG1()
         datalocal_texto = localHoraG1()
         link_texto = linksG1()
         descricao_texto = descricaoG1()
         pdf = SimpleDocTemplate("Noticias_G1.pdf", pagesize=letter)
-    elif(siteNoticia == 'f'):
+    if(siteNoticia[2] == 'f'):
         titulo_texto = tituloFolha()
         datalocal_texto = HoraFolha()
         link_texto = linksFolha()
         descricao_texto = descricaoFolha()
         pdf = SimpleDocTemplate("Noticias_FolhaDeSaoPaulo.pdf", pagesize=letter)
-    elif(siteNoticia == 'c'):
+    if(siteNoticia[3] == 'c'):
         titulo_texto = tituloCNN()
         datalocal_texto = HoraCNN()
         link_texto = linksCNN()
         descricao_texto = descricaoCNN(qtde_noticias)
         pdf = SimpleDocTemplate("Noticias_CNN.pdf", pagesize=letter)
-    elif(siteNoticia == 'j'):
+    if(siteNoticia[4] == 'j'):
         titulo_texto = tituloJovem()
         datalocal_texto = HoraJovem()
         link_texto = linksJovem()
