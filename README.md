@@ -1,4 +1,3 @@
-Em desenvolvimento
 # 📰WebScraping de Notícias
 
 Este código consegue capturar de forma automática, até as 10 últimas notícias de um dos seguintes sites: G1, UOL, Folha de São Paulo, CNN e Jovem Pan e exibi-las em um arquivo PDF
