@@ -32,7 +32,6 @@ def linksJovem():
     for link in links:
         url = link.find('a')
         armazenaLink.append(url.get('href'))
-    print(armazenaLink)
     return armazenaLink
 
 def HoraJovem():
