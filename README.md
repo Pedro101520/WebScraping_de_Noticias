@@ -12,8 +12,8 @@ Este código consegue capturar de forma automática, até as 10 últimas notíci
  - reportlab
 
 ## Instruções 📄
- - Descompacte o arquivo UltimasNoticias.rar
  - Primeiro faça o Download do arquivo .exe clicando no botão que esta acima ou na seguinte URL: https://pedrolima.tech/assets/UltimasNoticias.rar
+ - Depois descompacte o arquivo
  - Execute o programa main.exe
  - Informe a quantidade de notícias que deseja
  - Aperte no botão Gerar PDF
