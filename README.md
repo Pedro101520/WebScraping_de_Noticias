@@ -19,6 +19,7 @@ Este código consegue capturar de forma automática, até as 10 últimas notíci
  - Aperte no botão Gerar PDF
  - Os arquivos PDFs vão ser gerados dentro da pasta projeto (Pasta onde está localizado o arquivo main.exe)
  - As notícias coletadas vão ser sempre as mais recentes, pois a cada novo pedido de geração de PDF, o programa acessa os sites e coleta as informações mais recentes
+ - Se o navegador bloquear o Download é só liberar a instalação, pois o arquivo não contém vírus. Se tiver alguna dúvida pode entrar em contato (Minhas redes sociais, estão na página inical do meu GitHub), ou verificar o código fonte do projeto
 
 ## Em caso de erro ⚠
 ![Erro](https://github.com/Pedro101520/WebScraping_de_Noticias/assets/105872928/a508c8df-4351-48ea-9690-1cdaae4fc6e7)
