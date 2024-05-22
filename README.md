@@ -5,7 +5,7 @@ Este código consegue capturar de forma automática, até as 10 últimas notíci
 [![Link](https://img.shields.io/badge/Clique%20Aqui%20%20para%20baixar%20%20o%20%20execut%C3%A1vel-808080?style=for-the-badge)](https://pedrolima.tech/assets/UltimasNoticias.rar)
 
 ## Ferramentas 🛠️
- - Pytyhon
+ - Python
  - Tkinter
  - BeatifulSoup
  - urllib
