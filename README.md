@@ -2,7 +2,7 @@
 
 Este código consegue capturar de forma automática, até as 10 últimas notícias de um dos seguintes sites: G1, UOL, Folha de São Paulo, CNN e Jovem Pan e exibi-las em um arquivo PDF
 
-[![Link](https://img.shields.io/badge/Clique%20Aqui%20%20para%20baixar%20%20o%20%20execut%C3%A1vel-808080?style=for-the-badge)](https://pedrolima.tech/assets/UltimasNoticias.rar)
+[![Link](https://img.shields.io/badge/Clique%20Aqui%20%20para%20baixar%20%20o%20%20execut%C3%A1vel-808080?style=for-the-badge)](https://pedrolima.tech/assets/projects/UltimasNoticias.rar)
 
 ## Ferramentas 🛠️
  - Python
@@ -12,7 +12,7 @@ Este código consegue capturar de forma automática, até as 10 últimas notíci
  - reportlab
 
 ## Instruções 📄
- - Primeiro faça o Download do arquivo .exe clicando no botão que esta acima ou na seguinte URL: https://pedrolima.tech/assets/UltimasNoticias.rar
+ - Primeiro faça o Download do arquivo .exe clicando no botão que esta acima ou na seguinte URL: https://pedrolima.tech/assets/projects/UltimasNoticias.rar
  - Depois descompacte o arquivo
  - Execute o programa main.exe
  - Informe a quantidade de notícias que deseja
