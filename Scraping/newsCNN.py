@@ -6,17 +6,16 @@ parsed_html = BeautifulSoup(url, "html.parser")
 
 def tituloCNN():
     textoTitulo = []
-    titulos = parsed_html.find_all('div', attrs={'class': 'home__list__tag'})
+    titulos = parsed_html.find_all('h3', class_='news-item-header__title')
     for titulo in titulos:
-        conteudo = titulo.find('h3').get_text()
-        textoTitulo.append(conteudo)
+        textoTitulo.append(titulo.get_text())
     return textoTitulo
 
 def HoraCNN():
     armazenaInfo = []
-    infos = parsed_html.find_all('div', attrs={'class': 'latest__news__infos'})
+    infos = parsed_html.find_all('span', class_='home__title__date')
     for info in infos:
-        conteudo = info.find('span').get_text()
+        conteudo = info.get_text()
         armazenaInfo.append(conteudo)
     return armazenaInfo
 
