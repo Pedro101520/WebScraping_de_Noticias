@@ -25,7 +25,7 @@ def descricaoCNN(qtde_noticias):
     for link in links:
         url = urlopen(link)
         textoDescricao = BeautifulSoup(url, "html.parser")
-        descricoes = textoDescricao.find('p', attrs={'post__excerpt'})
+        descricoes = textoDescricao.find('p', class_={'single-header__excerpt'})
         if not descricoes:
             descricao.append("")
         else:
